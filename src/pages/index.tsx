@@ -1,6 +1,7 @@
 import type { NextPage, GetStaticProps } from "next";
 import { Head } from "src/components/Head";
 import { env } from "src/env/server.mjs";
+import { ThemeToggleButton } from "src/components/ThemeToggleButton";
 
 type Post = {
   domain: string;
@@ -31,16 +32,17 @@ const Home: NextPage<Props> = ({ redditnews }) => {
         url="https://news.andyfx.net"
       />
 
-      <main className="flex justify-center">
+      {/*<ThemeToggleButton />*/}
+      <main className="flex justify-center mt-4 mb-8">
         <div className="container lg:grid lg:grid-cols-2 lg:gap-4">
           <div>
-            <h2 className="text-xl">worldnews</h2>
+            <h2 className="text-xl ml-2 tracking-wider">/r/worldnews</h2>
             {redditnews.worldnews.map((post) => (
               <Post key={post.permalink} post={post} />
             ))}
           </div>
           <div>
-            <h2 className="text-xl">news</h2>
+            <h2 className="text-xl ml-2 tracking-wider">/r/news</h2>
             {redditnews.news.map((post) => (
               <Post key={post.permalink} post={post} />
             ))}
@@ -69,7 +71,7 @@ function scoreformat(score: number) {
 const Post = ({ post }: { post: Post }) => {
   return (
     <div className="p-2">
-      <h3>{post.title}</h3>
+      <h3 className="text-base font-normal">{post.title}</h3>
       <p>
         {`score: ${scoreformat(post.score)}, source: ${post.domain}, `}
         <a href={`https://www.reddit.com${post.permalink}}`}>view on reddit</a>
