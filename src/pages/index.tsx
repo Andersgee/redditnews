@@ -139,6 +139,12 @@ export const getStaticProps: GetStaticProps = async () => {
       revalidate: 10, //at most once every 10 seconds
     };
   } catch (error) {
-    return { notFound: true };
+    //https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration#error-handling-and-revalidation
+    // If there is a server error, you might want to
+    // throw an error instead of returning so that the cache is not updated
+    // until the next successful request.
+    throw new Error("Failed to fetch posts");
+
+    //return { notFound: true };
   }
 };
