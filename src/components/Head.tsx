@@ -47,7 +47,6 @@ export function Head({
   twitter_data1 = "",
   twitter_label2 = "",
   twitter_data2 = "",
-  themeColor = "#A4D1F3",
 }: Props) {
   return (
     <NextHead>
@@ -57,21 +56,18 @@ export function Head({
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="description" content={description} />
       <meta name="author" content="Anders Gustafsson" />
-      <link rel="apple-touch-icon" href={imageUrl} />
       <link rel="manifest" href="/manifest.json" />
       <title>{title}</title>
-
-      {/* pwa related? */}
+      {/* pwa related */}
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="theme-color" content={themeColor} />
-
+      <meta name="theme-color" content="#FAFAFA" /> {/* adress bar color, same as bgcolor looks good. */}
+      <link rel="apple-touch-icon" href="/icons/apple-touch-icon-192x192.png" />
       {/* facebook open graph tags*/}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={imageUrl} />
-
       {/* twitter card tags additive with the og: tags*/}
       <meta name="twitter:domain" content={domainUrl} />
       <meta name="twitter:url" content={url} />
@@ -79,7 +75,6 @@ export function Head({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={imageUrl} />
-
       {/* additional info Left*/}
       {twitter_label1 && <meta name="twitter:label1" content={twitter_label1} />}
       {twitter_data1 && <meta name="twitter:data1" content={twitter_data1} />}
