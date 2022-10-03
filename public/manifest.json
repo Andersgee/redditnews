@@ -2,7 +2,7 @@
   "name": "andyfx news",
   "short_name": "news",
   "display": "fullscreen",
-  "orientation": "portrait",
+  "orientation": "any",
   "scope": "/",
   "start_url": "/",
   "icons": [
