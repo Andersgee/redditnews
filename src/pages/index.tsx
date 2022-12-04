@@ -74,7 +74,7 @@ const Post = ({ post }: { post: Post }) => {
       <h3 className="text-base font-normal">{post.title}</h3>
       <p>
         {`score: ${scoreformat(post.score)}, source: ${post.domain}, `}
-        <a className="hover:text-blue-500" href={`https://www.reddit.com${post.permalink}}`}>
+        <a className="hover:text-blue-500" href={`https://www.reddit.com${post.permalink}`}>
           view on reddit
         </a>
       </p>
