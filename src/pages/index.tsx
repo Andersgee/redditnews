@@ -87,9 +87,6 @@ const Post = ({ post }: { post: Post }) => {
 const TOKEN_BASE_URL = "https://www.reddit.com/api/v1/access_token";
 const API_BASE_URL = "https://oauth.reddit.com";
 
-const clientId = env.REDDIT_CLIENT_ID;
-const clientSecret = env.REDDIT_CLIENT_SECRET;
-
 type Token = {
   access_token: string;
   expires_in: number;
@@ -125,7 +122,7 @@ export const getStaticProps: GetStaticProps = async () => {
     const token: Token = await fetch(`${TOKEN_BASE_URL}?grant_type=client_credentials`, {
       method: "POST",
       headers: {
-        authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString("base64")}`,
+        authorization: `Basic ${Buffer.from(`${env.REDDIT_CLIENT_ID}:${env.REDDIT_CLIENT_SECRET}`).toString("base64")}`,
       },
     }).then((res) => res.json());
 
@@ -136,7 +133,7 @@ export const getStaticProps: GetStaticProps = async () => {
     const props: Props = { redditnews };
     return {
       props,
-      revalidate: 10, //at most once every 10 seconds
+      revalidate: 60 * 60, //in seconds
     };
   } catch (error) {
     //https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration#error-handling-and-revalidation
