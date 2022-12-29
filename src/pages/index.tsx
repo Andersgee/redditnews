@@ -1,7 +1,7 @@
 import type { NextPage, GetStaticProps } from "next";
 import { Head } from "src/components/Head";
 import { env } from "src/env/server.mjs";
-import { ThemeToggleButton } from "src/components/ThemeToggleButton";
+//import { ThemeToggleButton } from "src/components/ThemeToggleButton";
 
 type Post = {
   domain: string;
