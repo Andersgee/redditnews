@@ -143,7 +143,7 @@ export function SEO({
       {/* twitter uses og tags for these if not provided so not technically needed */}
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
+      <meta name="twitter:image" content={absUrl(image)} />
 
       {/* attribution (when creator has twitter account)
       <meta name="twitter:site" content="@nytimes" />
