@@ -1,12 +1,18 @@
 import type { GetStaticProps } from "next";
+import { useEffect } from "react";
 import { SEO } from "src/components/SEO";
 import { getRedditnews, type Redditnews, type RedditPost } from "src/lib/redditnews";
+import * as sw from "src/lib/sw";
 
 type Props = {
   redditnews: Redditnews;
 };
 
 export default function Page({ redditnews }: Props) {
+  useEffect(() => {
+    sw.unregister();
+  }, []);
+
   return (
     <>
       <SEO
