@@ -44,10 +44,12 @@ const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
     putInCache(request, responseFromNetwork.clone());
     return responseFromNetwork;
   } catch (error) {
+    /*
     const fallbackResponse = await caches.match(fallbackUrl);
     if (fallbackResponse) {
       return fallbackResponse;
     }
+    */
     // when even the fallback response is not available,
     // there is nothing we can do, but we must always
     // return a Response object
@@ -71,32 +73,14 @@ self.addEventListener("activate", (event) => {
 */
 
 self.addEventListener("install", (event) => {
-  const files = [
-    "./",
-    "./_next/static/css/b0a7c091386eb3b5.css",
-    "./_next/static/chunks/webpack-ee7e63bc15b31913.js",
-    "./_next/static/chunks/framework-581f102fc68ef277.js",
-    "./_next/static/chunks/main-cd1bc1aa6e2c8646.js",
-    "./_next/static/chunks/pages/_app-bc418f9516849d8a.js",
-    "./_next/static/chunks/pages/index-e4cfbaf82d203ad8.js",
-    "./_next/static/j_xlN4-HGUrPIWpqd712n/_buildManifest.js",
-    "./_next/static/j_xlN4-HGUrPIWpqd712n/_ssgManifest.js",
-    //"./manifest.json",
-    "./icons/favicon.svg",
-    "./js/script.js",
-    "./icons/favicon.svg",
-  ];
   event.waitUntil(
     addResourcesToCache([
       "./",
-      "./index.html",
-      "./style.css",
-      "./app.js",
-      "./image-list.js",
-      "./star-wars-logo.jpg",
-      "./gallery/bountyHunters.jpg",
-      "./gallery/myLittleVader.jpg",
-      "./gallery/snowTroopers.jpg",
+      "./next/static/chunks/webpack-ee7e63bc15b31913.js",
+      "./next/static/chunks/framework-581f102fc68ef277.js",
+      "./next/static/chunks/main-cd1bc1aa6e2c8646.js",
+      "./next/static/css/b0a7c091386eb3b5.css",
+      "./next/static/chunks/pages/_app-de7e9fb1fb3e11b3.js",
     ]),
   );
 });
