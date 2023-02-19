@@ -1,11 +1,12 @@
 // Trying to make the bare minimum for prompting as installable app
 // without actually using any caching or intercepting requests etc
 // is this all that is required?
+// answer: nope. (the worker is stopped since there are no actual even listeners I believe)
+/*
 self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
-
-/*
+*/
 const addResourcesToCache = async (resources) => {
   const cache = await caches.open("v1");
   await cache.addAll(resources);
@@ -17,8 +18,8 @@ const putInCache = async (request, response) => {
 };
 
 const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
-  if (request.method !== "GET") {
-    //dont do anything special
+  //dont do anything special
+  if (request.method !== "GET" || request.url !== "/") {
     return await fetch(request);
   }
 
@@ -73,4 +74,3 @@ self.addEventListener("fetch", (event) => {
     }),
   );
 });
-*/
