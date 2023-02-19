@@ -7,6 +7,49 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 */
+
+self.addEventListener("install", (event) => {
+  self.skipWaiting();
+});
+
+const handleRequestNormally = async ({ request, preloadResponsePromise }) => {
+  const preloadResponse = await preloadResponsePromise;
+  if (preloadResponse) {
+    console.info("using preload response", preloadResponse);
+    return preloadResponse;
+  }
+
+  try {
+    const responseFromNetwork = await fetch(request);
+    return responseFromNetwork;
+  } catch (error) {
+    return new Response("Network error happened", {
+      status: 408,
+      headers: { "Content-Type": "text/plain" },
+    });
+  }
+};
+
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    handleRequestNormally({
+      request: event.request,
+      preloadResponsePromise: event.preloadResponse,
+    }),
+  );
+});
+
+/*
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    cacheFirst({
+      request: event.request,
+      preloadResponsePromise: event.preloadResponse,
+      fallbackUrl: "./gallery/myLittleVader.jpg",
+    }),
+  );
+});
+
 const addResourcesToCache = async (resources) => {
   const cache = await caches.open("v1");
   await cache.addAll(resources);
@@ -61,16 +104,18 @@ const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
   }
 };
 
+
+
 self.addEventListener("install", (event) => {
   event.waitUntil(addResourcesToCache(["./"]));
 });
 
 self.addEventListener("fetch", (event) => {
   event.respondWith(
-    cacheFirst({
+    handleRequestNormally({
       request: event.request,
       preloadResponsePromise: event.preloadResponse,
-      fallbackUrl: "./gallery/myLittleVader.jpg",
     }),
   );
 });
+*/
