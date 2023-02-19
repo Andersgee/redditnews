@@ -1,15 +1,11 @@
-/*
+// Trying to make the bare minimum for prompting as installable app
+// without actually using any caching or intercepting requests etc
+// is this all that is required?
 self.addEventListener("install", (event) => {
-    console.log("hello from sw")
-    // The promise that skipWaiting() returns can be safely ignored.
-    self.skipWaiting();
-    
-    // Perform any other actions required for your
-    // service worker to install, potentially inside
-    // of event.waitUntil();
+  self.skipWaiting();
 });
-*/
 
+/*
 const addResourcesToCache = async (resources) => {
   const cache = await caches.open("v1");
   await cache.addAll(resources);
@@ -21,6 +17,11 @@ const putInCache = async (request, response) => {
 };
 
 const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
+  if (request.method !== "GET") {
+    //dont do anything special
+    return await fetch(request);
+  }
+
   // First try to get the resource from the cache
   const responseFromCache = await caches.match(request);
   if (responseFromCache) {
@@ -44,12 +45,11 @@ const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
     putInCache(request, responseFromNetwork.clone());
     return responseFromNetwork;
   } catch (error) {
-    /*
-    const fallbackResponse = await caches.match(fallbackUrl);
-    if (fallbackResponse) {
-      return fallbackResponse;
-    }
-    */
+    //const fallbackResponse = await caches.match(fallbackUrl);
+    //if (fallbackResponse) {
+    //  return fallbackResponse;
+    //}
+
     // when even the fallback response is not available,
     // there is nothing we can do, but we must always
     // return a Response object
@@ -59,18 +59,6 @@ const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
     });
   }
 };
-/*
-const enableNavigationPreload = async () => {
-  if (self.registration.navigationPreload) {
-    // Enable navigation preloads!
-    await self.registration.navigationPreload.enable();
-  }
-};
-
-self.addEventListener("activate", (event) => {
-  event.waitUntil(enableNavigationPreload());
-});
-*/
 
 self.addEventListener("install", (event) => {
   event.waitUntil(addResourcesToCache(["./"]));
@@ -85,3 +73,4 @@ self.addEventListener("fetch", (event) => {
     }),
   );
 });
+*/
