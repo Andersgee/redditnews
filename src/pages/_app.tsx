@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   useEffect(() => {
-    sw.unregister();
+    sw.register();
   }, []);
 
   return (
