@@ -73,16 +73,7 @@ self.addEventListener("activate", (event) => {
 */
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    addResourcesToCache([
-      "./",
-      "./next/static/chunks/webpack-ee7e63bc15b31913.js",
-      "./next/static/chunks/framework-581f102fc68ef277.js",
-      "./next/static/chunks/main-cd1bc1aa6e2c8646.js",
-      "./next/static/css/b0a7c091386eb3b5.css",
-      "./next/static/chunks/pages/_app-de7e9fb1fb3e11b3.js",
-    ]),
-  );
+  event.waitUntil(addResourcesToCache(["./"]));
 });
 
 self.addEventListener("fetch", (event) => {
