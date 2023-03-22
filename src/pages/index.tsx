@@ -38,13 +38,10 @@ export default function Page({ redditnews }: Props) {
 function Post({ post }: { post: RedditPost }) {
   return (
     <div className="p-2">
-      <h3 className="text-base font-normal">{post.title}</h3>
-      <p>
-        {`score: ${scoreformat(post.score)}, source: ${post.domain}, `}
-        <a className="hover:text-blue-500" href={`https://www.reddit.com${post.permalink}`}>
-          view on reddit
-        </a>
-      </p>
+      <a className="group" href={`https://www.reddit.com${post.permalink}`}>
+        <h3 className="text-base font-normal group-hover:text-blue-600 dark:group-hover:text-blue-400">{post.title}</h3>
+      </a>
+      <p>{`score: ${scoreformat(post.score)}, source: ${post.domain}, `}</p>
     </div>
   );
 }
