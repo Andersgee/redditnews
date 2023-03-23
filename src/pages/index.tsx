@@ -41,7 +41,7 @@ function Post({ post }: { post: RedditPost }) {
       <a className="group" href={`https://www.reddit.com${post.permalink}`}>
         <h3 className="text-base font-normal group-hover:text-blue-600 dark:group-hover:text-blue-400">{post.title}</h3>
       </a>
-      <p>{`score: ${scoreformat(post.score)}, source: ${post.domain}, `}</p>
+      <p>{`score: ${scoreformat(post.score)} | source: ${post.domain}`}</p>
     </div>
   );
 }
