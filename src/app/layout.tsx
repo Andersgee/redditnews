@@ -3,8 +3,8 @@ import { Providers } from "./Providers";
 import { seo } from "src/utils/seo";
 
 export const metadata = seo({
-  title: "News",
-  description: "Quickly find/plan stuff to do with friends, or with anyone really.",
+  title: "Simple Reddit News",
+  description: "Simple overview of latest /r/news and /r/worldnews.",
   url: "/",
   image: "/icons/favicon-192.png",
 });

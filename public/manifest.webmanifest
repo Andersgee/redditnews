@@ -1,6 +1,6 @@
 {
-  "name": "andyfx news",
-  "short_name": "news",
+  "name": "Simple Reddit News",
+  "short_name": "Simple Reddit News",
   "display": "fullscreen",
   "orientation": "any",
   "scope": "/",
