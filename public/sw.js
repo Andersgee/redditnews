@@ -14,11 +14,5 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    (async () => {
-      const response = await event.preloadResponse;
-      if (response) return response;
-      return fetch(event.request);
-    })(),
-  );
+  return;
 });

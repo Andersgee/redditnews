@@ -28,6 +28,7 @@ export type RedditPost = z.infer<typeof zRedditPost>;
 export type Redditnews = {
   worldnews: RedditPost[];
   news: RedditPost[];
+  date: Date;
 };
 
 type Token = z.infer<typeof zToken>;
@@ -44,9 +45,10 @@ export async function getRedditnews(): Promise<Redditnews> {
   const token = zToken.parse(await res.json());
 
   const [news, worldnews] = await Promise.all([getposts("/r/news/hot", token), getposts("/r/worldnews/hot", token)]);
+  const date = new Date();
   //const news = await getposts("/r/news/hot", token);
   //const worldnews = await getposts("/r/worldnews/hot", token);
-  return { news, worldnews };
+  return { news, worldnews, date };
 }
 
 const TOKEN_BASE_URL = "https://www.reddit.com/api/v1/access_token";

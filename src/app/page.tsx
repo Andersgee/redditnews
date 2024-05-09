@@ -1,9 +1,15 @@
 import { getRedditnews, type RedditPost } from "src/lib/redditnews";
+import { UpdatedAt } from "./UpdatedAt";
+
+export const revalidate = 10;
 
 export default async function Page() {
   const redditnews = await getRedditnews();
   return (
     <main className="container mx-auto mt-4 mb-8">
+      <div className="flex justify-end mx-2">
+        <UpdatedAt date={redditnews.date} />
+      </div>
       <div className="px-2 lg:grid lg:grid-cols-2 lg:gap-4">
         <div>
           <h2 className="text-xl ml-2 tracking-wider">/r/worldnews</h2>
