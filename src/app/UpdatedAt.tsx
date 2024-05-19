@@ -17,9 +17,10 @@ export function UpdatedAt({ date }: Props) {
   }, [date]);
   useEffect(() => {
     if (Date.now() - date.getTime() <= 10000) {
-      setStr(`Updated ${Math.round((Date.now() - date.getTime()) / 1000)} seconds ago`);
+      //setStr(`Updated ${Math.round((Date.now() - date.getTime()) / 1000)} seconds ago`);
+      setStr("Updated just now");
     }
   }, [date]);
 
-  return <p className={str === "" ? "min-h-6 text-xs" : "min-h-6 text-xs animate-fade-in"}>{str}</p>;
+  return <p className={`min-h-6 text-xs ${str === "" ? "" : "animate-fade-in-out"}`}>{str}</p>;
 }
